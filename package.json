@@ -1,0 +1,36 @@
+{
+  "name": "backend-learning-project",
+  "version": "1.0.0",
+  "description": "- In this project, I will learn and impliment advanced backend , production file structure and skills that will help me to get placed in next 60 days.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayan-Siddique/Backend-Learning-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ayan-Siddique/Backend-Learning-Project/issues"
+  },
+  "homepage": "https://github.com/Ayan-Siddique/Backend-Learning-Project#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.1",
+    "mongoose-paginate-v2": "^1.9.5",
+    "multer": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
