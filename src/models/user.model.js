@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const userSchema = new Schema(
   {
-    username: {
+    userName: {
       type: String,
       required: [true, "Username is required"],
       unique: [true, "Username must be unique"],
@@ -20,18 +20,21 @@ const userSchema = new Schema(
       lowercase: true,
       index: true,
     },
-    avatar: {
-      type: String,
-      required: [true, "Avatar is required"],
-    },
+
+    // will add avatar and coverImage feature later
+
+    // avatar: {
+    //   type: String,
+    //   required: [true, "Avatar is required"],
+    // },
     fullName: {
       type: String,
       required: [true, "fullname is required"],
       trim: true,
     },
-    coverImage: {
-      type: String,
-    },
+    // coverImage: {
+    //   type: String,
+    // },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -51,10 +54,9 @@ const userSchema = new Schema(
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    return next();
+    return 
   }
   this.password = await bcrypt.hash(this.password, 10);
-  next();
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
