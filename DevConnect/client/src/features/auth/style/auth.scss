@@ -1,0 +1,418 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+$bg-dark: #0a0e1a;
+$bg-panel: #0d1120;
+$bg-card: #111827;
+$bg-input: #1a2235;
+$border-color: #1e2d45;
+$accent-purple: #6c63ff;
+$accent-cyan: #22d3ee;
+$accent-blue: #3b82f6;
+$text-primary: #f1f5f9;
+$text-secondary: #94a3b8;
+$text-muted: #475569;
+$white: #ffffff;
+
+// ─── Layout ───────────────────────────────────────────────────────────────────
+.auth-layout {
+  display: flex;
+  min-height: 100vh;
+  background: $bg-dark;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+// ─── Left Panel (Branding) ────────────────────────────────────────────────────
+.auth-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 3rem;
+  background: linear-gradient(160deg, #0d1120 0%, #0a0e1a 60%, #0c1229 100%);
+  border-right: 1px solid $border-color;
+  position: relative;
+  overflow: hidden;
+
+  // Subtle background glow
+  &::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1;
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, $accent-cyan, $accent-purple);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+
+  .logo-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.02em;
+  }
+}
+
+.auth-illustration {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  svg {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+}
+
+.auth-hero {
+  z-index: 1;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+
+    span {
+      color: $accent-cyan;
+    }
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+}
+
+.auth-stats {
+  display: flex;
+  gap: 1rem;
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &:not(:last-child) {
+      padding-right: 1rem;
+      border-right: 1px solid $border-color;
+    }
+
+    strong {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: $text-primary;
+    }
+
+    span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: $text-muted;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+  }
+}
+
+// ─── Right Panel (Form) ───────────────────────────────────────────────────────
+.auth-right {
+  width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 3.5rem;
+  background: $bg-panel;
+}
+
+.auth-form-container {
+  width: 100%;
+  max-width: 400px;
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .auth-subtitle {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    margin: 0 0 2rem;
+  }
+}
+
+// ─── OAuth Buttons ────────────────────────────────────────────────────────────
+.oauth-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.oauth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  background: $bg-input;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  color: $text-primary;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: #2e3f5c;
+    background: #1e2d45;
+  }
+
+  .oauth-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+}
+
+// ─── Divider ──────────────────────────────────────────────────────────────────
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: $border-color;
+  }
+
+  span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: $text-muted;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+
+// ─── Form Fields ──────────────────────────────────────────────────────────────
+.form-group {
+  margin-bottom: 1.25rem;
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .input-icon {
+    position: absolute;
+    left: 0.875rem;
+    color: $text-muted;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    font-size: 0.9rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.7rem 0.875rem 0.7rem 2.5rem;
+    background: $bg-input;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    color: $text-primary;
+    font-size: 0.875rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: $text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $accent-purple;
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+    }
+  }
+
+  .input-action {
+    position: absolute;
+    right: 0.875rem;
+    color: $text-muted;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0;
+
+    &:hover {
+      color: $text-secondary;
+    }
+  }
+}
+
+// Two-column form row
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+// ─── Remember Me / Forgot ─────────────────────────────────────────────────────
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    width: 15px;
+    height: 15px;
+    accent-color: $accent-purple;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 0.8rem;
+    color: $text-secondary;
+  }
+}
+
+.forgot-link {
+  font-size: 0.8rem;
+  color: $accent-purple;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    color: lighten($accent-purple, 10%);
+    text-decoration: underline;
+  }
+}
+
+// ─── Submit Button ────────────────────────────────────────────────────────────
+.btn-primary {
+  width: 100%;
+  padding: 0.8rem;
+  background: $accent-purple;
+  border: none;
+  border-radius: 8px;
+  color: $white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.1s;
+  font-family: inherit;
+
+  &:hover {
+    background: lighten($accent-purple, 5%);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+// ─── Switch Auth Link ─────────────────────────────────────────────────────────
+.auth-switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: $text-secondary;
+
+  a {
+    color: $accent-cyan;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ─── Terms (Register) ─────────────────────────────────────────────────────────
+.auth-terms {
+  text-align: center;
+  font-size: 0.75rem;
+  color: $text-muted;
+  margin-top: 1rem;
+  line-height: 1.5;
+
+  a {
+    color: $text-secondary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .auth-left {
+    display: none;
+  }
+
+  .auth-right {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+}

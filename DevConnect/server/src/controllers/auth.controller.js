@@ -79,10 +79,8 @@ const authController = {
 
     const { refreshToken, accessToken } = await generateTokens(user);
 
-    console.log(`refresh-token = ${refreshToken}`);
-
     const refreshTokenHash = await bcrypt.hash(refreshToken, 10);
-    sessionModel.create({
+    await sessionModel.create({
       user: user._id,
       refreshToken: refreshTokenHash,
       ip: req.ip,
@@ -113,6 +111,8 @@ const authController = {
       $or: [{ _id }, { revoked: false }],
     });
 
+    sessions.revoked = true;
+    await sessions.save();
     if (!sessions) throw new ApiError(404, "No session Found");
 
     res
