@@ -1,7 +1,7 @@
 // src/components/common/InputField.jsx
 import { useState } from 'react';
 
-const InputField = ({ label, type = 'text', placeholder, icon, id }) => {
+const InputField = ({ label, type = 'text', placeholder, icon, id, handleChange, value }) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === 'password';
   const inputType = isPassword && showPassword ? 'text' : type;
@@ -15,6 +15,9 @@ const InputField = ({ label, type = 'text', placeholder, icon, id }) => {
           id={id}
           type={inputType}
           placeholder={placeholder}
+          onChange={handleChange}
+          value={value}
+
         />
         {isPassword && (
           <button

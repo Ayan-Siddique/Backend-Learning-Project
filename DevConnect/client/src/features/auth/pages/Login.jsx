@@ -1,17 +1,16 @@
 // src/pages/auth/Login.jsx
 import BrandPanel from "../components/BrandPanel.jsx";
 import OAuthButtons from "../components/OAuthButtons.jsx";
-import InputField from "../components/InputField.jsx";
 import "../style/auth.scss";
 import { useAuth } from "../hooks/useAuth.js";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { user, loading, handleLogin } = useAuth();
-  const navigate = useState();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +23,9 @@ const Login = () => {
   if (loading)
     return (
       <main>
-        <h1>Loading.....</h1>
+        <center>
+          <h1>Loading.....</h1>
+        </center>
       </main>
     );
 
@@ -47,7 +48,7 @@ const Login = () => {
           </div>
           <form onSubmit={handleSubmit}>
             {/* Form */}
-            <InputField
+            <input
               id="email"
               label="Email address"
               type="email"
@@ -59,7 +60,7 @@ const Login = () => {
               icon="✉"
             />
 
-            <InputField
+            <input
               id="password"
               label="Password"
               type="password"
@@ -86,7 +87,7 @@ const Login = () => {
             </button>
           </form>
           <p className="auth-switch">
-            Don't have an account? <Link href="/register">Create one free</Link>
+            Don't have an account? <Link to="/register">Create one free</Link>
           </p>
         </div>
       </div>

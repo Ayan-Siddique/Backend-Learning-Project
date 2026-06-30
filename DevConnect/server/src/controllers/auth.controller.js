@@ -62,13 +62,16 @@ const authController = {
    */
 
   login: asyncHandler(async (req, res) => {
-    const { email, userName, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!(email || userName) || !password)
+    console.log(req.body);
+    
+
+    if (!email || !password)
       throw new ApiError(409, "All fields are required");
 
     const user = await UserModel.findOne({
-      $or: [{ email }, { userName }],
+      $or: [{ email }],
     });
     if (!user) throw new ApiError(404, "User Not exist");
 

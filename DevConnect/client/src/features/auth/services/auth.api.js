@@ -5,9 +5,9 @@ const authApi = axios.create({
   withCredentials: true,
 });
 
-export async function login(userName, password) {
+export async function login(email, password) {
   const response = await authApi.post("/login", {
-    userName,
+    email,
     password,
   });
 

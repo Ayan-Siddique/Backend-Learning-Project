@@ -6,8 +6,10 @@ import cors from "cors";
 
 const corsOptions = {
   // Allow only requests from this domain
-  origin: "http://localhost:5173/",
-  Credential: true,
+
+  credentials: true,
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
 };
 
 const app = express();

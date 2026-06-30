@@ -6,15 +6,15 @@ export const useAuth = () => {
   const context = useContext(UserContext);
   const { user, setUser, loading, setLoading, errors, setErrors } = context;
 
-  const handleLogin = async(userName, password) =>{
+  const handleLogin = async (email, password) => {
     setLoading(true);
 
-    const response = await login(userName, password);
+    const response = await login(email, password);
 
     setUser(response.user);
 
     setLoading(false);
-  }
+  };
 
   async function handleRegister(userName, fullName, email, password) {
     setLoading(true);
@@ -26,5 +26,5 @@ export const useAuth = () => {
     setLoading(false);
   }
 
-  return (user, loading, handleLogin, handleRegister);
+  return { user, loading, handleLogin, handleRegister };
 };
